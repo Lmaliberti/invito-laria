@@ -27,13 +27,17 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        html, body {
+            height: 100%;
+        }
+
         body {
             background-color: #1a1a1a;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            min-height: 100dvh;
+            min-height: -webkit-fill-available; /* Fix specifico per Safari iOS */
             font-family: 'Cinzel', serif;
             color: #333;
             margin: 0;
@@ -46,6 +50,7 @@
             max-width: 450px;
             height: 100vh;
             height: 100dvh;
+            max-height: -webkit-fill-available; /* Evita il taglio inferiore su Safari */
             position: relative;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             overflow: hidden;
@@ -60,6 +65,7 @@
                 max-width: 100%;
                 height: 100vh;
                 height: 100dvh;
+                max-height: -webkit-fill-available;
                 box-shadow: none;
             }
         }
@@ -67,10 +73,10 @@
         /* Cornice esterna e interna */
         .border-outer {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
             border: 2px solid var(--goldcolor);
             pointer-events: none;
             z-index: 10;
@@ -78,10 +84,10 @@
 
         .border-inner {
             position: absolute;
-            top: 21px;
-            left: 21px;
-            right: 21px;
-            bottom: 21px;
+            top: 18px;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
             border: 1px solid rgba(197, 160, 89, 0.45);
             pointer-events: none;
             z-index: 10;
@@ -92,7 +98,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 175px;
+            width: 160px;
             z-index: 11;
             pointer-events: none;
         }
@@ -101,7 +107,7 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 175px;
+            width: 160px;
             z-index: 11;
             pointer-events: none;
         }
@@ -113,15 +119,16 @@
             font-weight: normal;
         }
 
-        /* --- NUOVI GHIRIGORI ELEGANTI DATA PRINCIPALE --- */
+        /* --- GHIRIGORI ELEGANTI DATA PRINCIPALE --- */
         .ornament-divider {
-            width: 84%;
-            max-width: 290px;
-            height: 18px;
+            width: 82%;
+            max-width: 280px;
+            height: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 4px 0;
+            margin: 2px 0;
+            flex-shrink: 0;
         }
 
         .ornament-divider svg {
@@ -131,11 +138,11 @@
             stroke: var(--goldcolor);
         }
 
-        /* Mini divisore raffinato ed EQUISPAZIATO per i pulsanti mappa */
+        /* Mini divisore raffinato ed equispaziato per i pulsanti mappa */
         .mini-ornament {
             width: 65px;
             height: 10px;
-            margin: 7px auto 7px auto; /* Equispaziato esattamente tra titolo e sottotitolo */
+            margin: 6px auto 6px auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -148,7 +155,7 @@
             stroke: var(--goldcolor);
         }
 
-        /* Gestione Pagine */
+        /* Gestione Pagine - Padding ridotto per dare respiro su schermi corti */
         .page {
             position: absolute;
             top: 0;
@@ -159,7 +166,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 38px 26px;
+            padding: 28px 22px;
             transition: opacity 0.7s ease, transform 0.7s ease;
             z-index: 1;
         }
@@ -188,14 +195,14 @@
         }
 
         .seal-btn img {
-            width: 155px;
+            width: 150px;
             height: auto;
             filter: drop-shadow(0 8px 14px rgba(0,0,0,0.3));
         }
 
         .seal-btn span {
-            margin-top: 16px;
-            font-size: 0.8rem;
+            margin-top: 15px;
+            font-size: 0.78rem;
             font-weight: 700;
             color: var(--goldcolor);
             letter-spacing: 2.5px;
@@ -205,7 +212,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 18px;
             z-index: 20;
         }
 
@@ -227,48 +234,54 @@
             text-align: center;
             width: 100%;
             height: 100%;
-            justify-content: space-between;
+            justify-content: space-evenly;
             z-index: 20;
-            padding: 8px 0;
+            padding: 4px 0;
         }
 
         .intro-text {
-            font-size: 0.78rem;
-            letter-spacing: 1.2px;
-            line-height: 1.45;
+            font-size: 0.75rem;
+            letter-spacing: 1.1px;
+            line-height: 1.4;
             text-transform: uppercase;
-            margin-top: 10px;
+            margin-top: 6px;
+            flex-shrink: 0;
         }
 
+        /* Titolo che si adatta all'altezza reale dello schermo */
         .degree-title {
-            font-size: 3.3rem;
+            font-size: clamp(2.5rem, 6.5vh, 3.2rem);
             line-height: 1;
-            margin: 2px 0;
+            margin: 1px 0;
+            flex-shrink: 0;
         }
 
+        /* Illustrazione dinamica anti-sovrapposizione */
         .main-illustration {
-            height: 150px;
+            height: clamp(100px, 15vh, 145px);
             width: auto;
             object-fit: contain;
-            margin-bottom: -10px;
+            margin: 0 auto;
             z-index: 15;
+            flex-shrink: 1;
         }
 
-        /* Data compatta ed elegante su un'unica riga */
+        /* Data compatta su un'unica riga */
         .date-section {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 600;
-            letter-spacing: 1.8px;
+            letter-spacing: 1.6px;
             display: flex;
             align-items: baseline;
             justify-content: center;
-            gap: 7px;
-            margin: 4px 0;
+            gap: 6px;
+            margin: 2px 0;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .date-day {
-            font-size: 1.85rem;
+            font-size: 1.75rem;
             color: var(--maincolor);
             font-weight: 700;
             line-height: 1;
@@ -284,8 +297,9 @@
             display: flex;
             width: 100%;
             justify-content: space-between;
-            gap: 10px;
-            margin: 4px 0;
+            gap: 8px;
+            margin: 2px 0;
+            flex-shrink: 0;
         }
 
         .map-btn {
@@ -293,7 +307,7 @@
             background-color: var(--buttonbg);
             border: 1.5px solid var(--maincolor);
             border-radius: 10px;
-            padding: 10px 6px;
+            padding: 8px 4px;
             text-decoration: none;
             color: var(--maincolor);
             display: flex;
@@ -309,19 +323,19 @@
         }
 
         .map-btn i {
-            font-size: 1.25rem;
-            margin-bottom: 3px;
+            font-size: 1.15rem;
+            margin-bottom: 1px;
         }
 
         .map-btn .btn-title {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             margin-top: 1px;
             margin-bottom: 0;
         }
 
         .map-btn .btn-subtitle {
-            font-size: 0.68rem;
+            font-size: 0.66rem;
             line-height: 1.2;
             color: #444;
             font-weight: 600;
@@ -329,7 +343,7 @@
         }
 
         .map-btn .btn-desc {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             color: #777;
             margin-top: 1px;
         }
@@ -339,8 +353,8 @@
             width: 100%;
             background-color: var(--buttonbg);
             border: 1.8px solid var(--maincolor);
-            border-radius: 11px;
-            padding: 10px 14px;
+            border-radius: 10px;
+            padding: 8px 12px;
             text-decoration: none;
             color: var(--maincolor);
             display: flex;
@@ -349,7 +363,8 @@
             gap: 12px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.08);
             transition: transform 0.2s;
-            margin-bottom: 4px;
+            margin: 2px 0;
+            flex-shrink: 0;
         }
 
         .wa-btn:active {
@@ -357,7 +372,7 @@
         }
 
         .wa-btn i {
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             color: var(--maincolor);
         }
 
@@ -368,30 +383,31 @@
         }
 
         .wa-title {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
         }
 
         .wa-subtitle {
-            font-size: 0.62rem;
+            font-size: 0.6rem;
             color: #666;
         }
 
-        /* Chiusura e Firma */
+        /* Chiusura e Firma - Proporzionata in altezza */
         .footer-salute {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
 
         .footer-salute .waiting {
-            font-size: 2.1rem;
+            font-size: clamp(1.8rem, 4.2vh, 2.1rem);
             line-height: 1.05;
         }
 
         .footer-salute .doctor {
-            font-size: 1.6rem;
+            font-size: clamp(1.35rem, 3.2vh, 1.55rem);
         }
     </style>
 </head>
