@@ -33,27 +33,39 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            min-height: 100dvh;
             font-family: 'Cinzel', serif;
             color: #333;
             margin: 0;
+            overflow: hidden;
         }
 
-        /* Contenitore principale (formato verticale 9:16 come 108x192mm) */
+        /* Contenitore principale: a tutto schermo su smartphone, card centrata su PC */
         .card-container {
             width: 100%;
-            max-width: 420px;
-            aspect-ratio: 9 / 16;
-            max-height: 98vh;
+            max-width: 450px;
+            height: 100vh;
+            height: 100dvh; /* Supporto ai browser mobile moderni */
             position: relative;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             overflow: hidden;
             background-image: url('carta.png');
             background-size: cover;
             background-position: center;
-            background-color: #f4efe6; /* Avorio caldo di fallback */
+            background-color: #f4efe6;
         }
 
-        /* Cornice esterna e interna (TikZ overlay) */
+        /* Su smartphone rimuove i limiti per occupare il 100% dello schermo */
+        @media (max-width: 600px) {
+            .card-container {
+                max-width: 100%;
+                height: 100vh;
+                height: 100dvh;
+                box-shadow: none;
+            }
+        }
+
+        /* Cornice esterna e interna */
         .border-outer {
             position: absolute;
             top: 15px;
@@ -76,12 +88,12 @@
             z-index: 10;
         }
 
-        /* Decorazioni floreali agli angoli (riscalate a 5.8cm) */
+        /* Decorazioni floreali agli angoli */
         .corner-top-left {
             position: absolute;
             top: 0;
             left: 0;
-            width: 170px;
+            width: 175px;
             z-index: 11;
             pointer-events: none;
         }
@@ -90,7 +102,7 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 170px;
+            width: 175px;
             z-index: 11;
             pointer-events: none;
         }
@@ -103,7 +115,7 @@
         }
 
         .gold-line {
-            width: 55%;
+            width: 60%;
             height: 1px;
             background-color: var(--goldcolor);
             margin: 6px 0;
@@ -120,7 +132,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 35px 24px;
+            padding: 38px 26px;
             transition: opacity 0.7s ease, transform 0.7s ease;
             z-index: 1;
         }
@@ -149,14 +161,14 @@
         }
 
         .seal-btn img {
-            width: 140px;
+            width: 155px;
             height: auto;
             filter: drop-shadow(0 8px 14px rgba(0,0,0,0.3));
         }
 
         .seal-btn span {
-            margin-top: 14px;
-            font-size: 0.72rem;
+            margin-top: 16px;
+            font-size: 0.8rem;
             font-weight: 700;
             color: var(--goldcolor);
             letter-spacing: 2.5px;
@@ -165,18 +177,18 @@
         .footer-cover {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 25px;
             z-index: 20;
         }
 
         .footer-cover i {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--goldcolor);
         }
 
         .footer-cover .script-text {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #333;
         }
 
@@ -194,29 +206,29 @@
         }
 
         .intro-text {
-            font-size: 0.72rem;
+            font-size: 0.78rem;
             letter-spacing: 1.2px;
             line-height: 1.45;
             text-transform: uppercase;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .degree-title {
-            font-size: 3.1rem;
+            font-size: 3.3rem;
             line-height: 1;
             margin: 2px 0;
         }
 
         .main-illustration {
-            height: 150px;
+            height: 160px;
             width: auto;
             object-fit: contain;
-            margin-bottom: -15px; /* Replica visiva di \vspace{-1cm} */
+            margin-bottom: -15px;
             z-index: 15;
         }
 
         .date-section {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
             letter-spacing: 2px;
             display: flex;
@@ -225,13 +237,13 @@
         }
 
         .date-day {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: var(--maincolor);
             font-weight: 700;
         }
 
         .date-year {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-top: 1px;
         }
 
@@ -241,15 +253,15 @@
             width: 100%;
             justify-content: space-between;
             gap: 10px;
-            margin: 4px 0;
+            margin: 6px 0;
         }
 
         .map-btn {
             flex: 1;
             background-color: var(--buttonbg);
             border: 1.5px solid var(--maincolor);
-            border-radius: 9px;
-            padding: 8px 4px;
+            border-radius: 10px;
+            padding: 9px 5px;
             text-decoration: none;
             color: var(--maincolor);
             display: flex;
@@ -265,25 +277,25 @@
         }
 
         .map-btn i {
-            font-size: 1.15rem;
-            margin-bottom: 3px;
+            font-size: 1.25rem;
+            margin-bottom: 4px;
         }
 
         .map-btn .btn-title {
-            font-size: 0.78rem;
+            font-size: 0.82rem;
             font-weight: 700;
             margin-bottom: 2px;
         }
 
         .map-btn .btn-subtitle {
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             line-height: 1.2;
             color: #444;
             font-weight: 600;
         }
 
         .map-btn .btn-desc {
-            font-size: 0.56rem;
+            font-size: 0.6rem;
             color: #777;
             margin-top: 2px;
         }
@@ -293,14 +305,14 @@
             width: 100%;
             background-color: var(--buttonbg);
             border: 1.8px solid var(--maincolor);
-            border-radius: 10px;
-            padding: 9px 12px;
+            border-radius: 11px;
+            padding: 10px 14px;
             text-decoration: none;
             color: var(--maincolor);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.08);
             transition: transform 0.2s;
             margin-bottom: 4px;
@@ -311,7 +323,7 @@
         }
 
         .wa-btn i {
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             color: var(--wacolor);
         }
 
@@ -322,12 +334,12 @@
         }
 
         .wa-title {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 700;
         }
 
         .wa-subtitle {
-            font-size: 0.58rem;
+            font-size: 0.62rem;
             color: #666;
         }
 
@@ -336,16 +348,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .footer-salute .waiting {
-            font-size: 2rem;
+            font-size: 2.1rem;
             line-height: 1.05;
         }
 
         .footer-salute .doctor {
-            font-size: 1.55rem;
+            font-size: 1.6rem;
         }
     </style>
 </head>
