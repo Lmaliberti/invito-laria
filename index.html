@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laurea Ilaria - Invito</title>
+    <!-- Importazione dei Font eleganti da Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --maincolor: #8B0000;
+            --goldcolor: #C5A059;
+            --buttonbg: #FAF6F0;
+            --wacolor: #128C7E;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Cinzel', serif;
+            color: #333;
+            margin: 0;
+        }
+
+        /* Contenitore principale (formato verticale 9:16 come 108x192mm) */
+        .card-container {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 9 / 16;
+            max-height: 98vh;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            overflow: hidden;
+            background-image: url('carta.png');
+            background-size: cover;
+            background-position: center;
+            background-color: #f4efe6; /* Avorio caldo di fallback */
+        }
+
+        /* Cornice esterna e interna (TikZ overlay) */
+        .border-outer {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid var(--goldcolor);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .border-inner {
+            position: absolute;
+            top: 21px;
+            left: 21px;
+            right: 21px;
+            bottom: 21px;
+            border: 1px solid rgba(197, 160, 89, 0.45);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Decorazioni floreali agli angoli (riscalate a 5.8cm) */
+        .corner-top-left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 170px;
+            z-index: 11;
+            pointer-events: none;
+        }
+
+        .corner-bottom-right {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 170px;
+            z-index: 11;
+            pointer-events: none;
+        }
+
+        /* Tipografia LaTeX */
+        .script-text {
+            font-family: 'Great Vibes', cursive;
+            color: var(--maincolor);
+            font-weight: normal;
+        }
+
+        .gold-line {
+            width: 55%;
+            height: 1px;
+            background-color: var(--goldcolor);
+            margin: 6px 0;
+        }
+
+        /* Gestione Pagine */
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 35px 24px;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            z-index: 1;
+        }
+
+        .page.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(1.04);
+            z-index: 0;
+        }
+
+        /* --- PAGINA 1: COPERTINA --- */
+        .seal-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            margin: auto 0;
+            z-index: 20;
+        }
+
+        .seal-btn:hover, .seal-btn:active {
+            transform: scale(1.06);
+        }
+
+        .seal-btn img {
+            width: 140px;
+            height: auto;
+            filter: drop-shadow(0 8px 14px rgba(0,0,0,0.3));
+        }
+
+        .seal-btn span {
+            margin-top: 14px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--goldcolor);
+            letter-spacing: 2.5px;
+        }
+
+        .footer-cover {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            z-index: 20;
+        }
+
+        .footer-cover i {
+            font-size: 0.85rem;
+            color: var(--goldcolor);
+        }
+
+        .footer-cover .script-text {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        /* --- PAGINA 2: L'INVITO --- */
+        .invitation-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+            z-index: 20;
+            padding: 10px 0;
+        }
+
+        .intro-text {
+            font-size: 0.72rem;
+            letter-spacing: 1.2px;
+            line-height: 1.45;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .degree-title {
+            font-size: 3.1rem;
+            line-height: 1;
+            margin: 2px 0;
+        }
+
+        .main-illustration {
+            height: 150px;
+            width: auto;
+            object-fit: contain;
+            margin-bottom: -15px; /* Replica visiva di \vspace{-1cm} */
+            z-index: 15;
+        }
+
+        .date-section {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-day {
+            font-size: 1.6rem;
+            color: var(--maincolor);
+            font-weight: 700;
+        }
+
+        .date-year {
+            font-size: 0.85rem;
+            margin-top: 1px;
+        }
+
+        /* Pulsanti Mappa Interattivi */
+        .maps-container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 4px 0;
+        }
+
+        .map-btn {
+            flex: 1;
+            background-color: var(--buttonbg);
+            border: 1.5px solid var(--maincolor);
+            border-radius: 9px;
+            padding: 8px 4px;
+            text-decoration: none;
+            color: var(--maincolor);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.06);
+        }
+
+        .map-btn:active {
+            transform: scale(0.97);
+            background-color: #f2e9dc;
+        }
+
+        .map-btn i {
+            font-size: 1.15rem;
+            margin-bottom: 3px;
+        }
+
+        .map-btn .btn-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .map-btn .btn-subtitle {
+            font-size: 0.65rem;
+            line-height: 1.2;
+            color: #444;
+            font-weight: 600;
+        }
+
+        .map-btn .btn-desc {
+            font-size: 0.56rem;
+            color: #777;
+            margin-top: 2px;
+        }
+
+        /* Pulsante WhatsApp */
+        .wa-btn {
+            width: 100%;
+            background-color: var(--buttonbg);
+            border: 1.8px solid var(--maincolor);
+            border-radius: 10px;
+            padding: 9px 12px;
+            text-decoration: none;
+            color: var(--maincolor);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+            margin-bottom: 4px;
+        }
+
+        .wa-btn:active {
+            transform: scale(0.98);
+        }
+
+        .wa-btn i {
+            font-size: 1.6rem;
+            color: var(--wacolor);
+        }
+
+        .wa-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .wa-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .wa-subtitle {
+            font-size: 0.58rem;
+            color: #666;
+        }
+
+        /* Chiusura e Firma */
+        .footer-salute {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .footer-salute .waiting {
+            font-size: 2rem;
+            line-height: 1.05;
+        }
+
+        .footer-salute .doctor {
+            font-size: 1.55rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <!-- Cornici e Decorazioni esterne fisse -->
+        <div class="border-outer"></div>
+        <div class="border-inner"></div>
+        <img class="corner-top-left" src="alto.png" alt="">
+        <img class="corner-bottom-right" src="basso.png" alt="">
+
+        <!-- ==========================================
+             PAGINA 1: COPERTINA CON IMMAGINE CLICCABILE
+             ========================================== -->
+        <div id="page1" class="page">
+            <div></div> <!-- Distanziatore -->
+            
+            <div class="seal-btn" onclick="openInvitation()">
+                <img src="sigillo.png" alt="Sigillo">
+                <span>CLICCA PER APRIRE</span>
+            </div>
+
+            <div class="footer-cover">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span class="script-text">Laurea di Ilaria</span>
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+        </div>
+
+        <!-- ==========================================
+             PAGINA 2: L'INVITO
+             ========================================== -->
+        <div id="page2" class="page hidden">
+            <div class="invitation-content">
+                
+                <p class="intro-text">Sono lieta di invitarti per<br>festeggiare la mia laurea in</p>
+                
+                <h1 class="degree-title script-text">Giurisprudenza</h1>
+                
+                <img class="main-illustration" src="decorazione.png" alt="Laureata">
+                
+                <div class="gold-line"></div>
+                
+                <div class="date-section">
+                    <span>GIOVEDÌ</span>
+                    <span class="date-day">20</span>
+                    <span>OTTOBRE</span>
+                </div>
+                <div class="date-year">2026</div>
+                
+                <div class="gold-line"></div>
+
+                <!-- Sezione Luoghi (Mappe) -->
+                <div class="maps-container">
+                    <a class="map-btn" href="https://maps.app.goo.gl/Ua8qaku8DHuYs6AX8?g_st=aw" target="_blank">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span class="btn-title">PROCLAMAZIONE</span>
+                        <span class="btn-subtitle">20 Ottobre - Ore 16:00</span>
+                        <span class="btn-desc">Dipartimento Federico II</span>
+                    </a>
+                    <a class="map-btn" href="https://maps.app.goo.gl/wLYrCB4AHYzJDBKk8?g_st=ac" target="_blank">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span class="btn-title">FESTA</span>
+                        <span class="btn-subtitle">31 Ottobre - Ore 19:30</span>
+                        <span class="btn-desc">Villa Gervasio - Bacoli</span>
+                    </a>
+                </div>
+
+                <!-- Pulsante WhatsApp per Conferma -->
+                <a class="wa-btn" href="https://wa.me/393312753238?text=Ciao+Ilaria!+Confermo+con+piacere+la+mia+presenza+alla+tua+laurea!" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <div class="wa-text">
+                        <span class="wa-title">CONFERMA LA TUA PRESENZA</span>
+                        <span class="wa-subtitle">Clicca qui per inviare un messaggio WhatsApp a Ilaria</span>
+                    </div>
+                </a>
+
+                <!-- Saluto Finale -->
+                <div class="footer-salute">
+                    <span class="waiting script-text">Ti aspetto!</span>
+                    <span class="doctor script-text">Dottoressa Ilaria</span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openInvitation() {
+            const page1 = document.getElementById('page1');
+            const page2 = document.getElementById('page2');
+            
+            page1.classList.add('hidden');
+            page2.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
