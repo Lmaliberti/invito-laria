@@ -113,15 +113,15 @@
             font-weight: normal;
         }
 
-        /* --- DIVISORI ORNAMENTALI (GHIRIGORI) --- */
+        /* --- NUOVI GHIRIGORI ELEGANTI DATA PRINCIPALE --- */
         .ornament-divider {
-            width: 82%;
+            width: 84%;
             max-width: 290px;
-            height: 20px;
+            height: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 1px 0;
+            margin: 4px 0;
         }
 
         .ornament-divider svg {
@@ -131,15 +131,14 @@
             stroke: var(--goldcolor);
         }
 
-        .ornament-bottom {
-            transform: scaleY(-1);
-        }
-
-        /* Mini divisore con cuoricino per i pulsanti mappa */
+        /* Mini divisore raffinato ed EQUISPAZIATO per i pulsanti mappa */
         .mini-ornament {
-            width: 60px;
-            height: 8px;
-            margin: 3px auto;
+            width: 65px;
+            height: 10px;
+            margin: 7px auto 7px auto; /* Equispaziato esattamente tra titolo e sottotitolo */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .mini-ornament svg {
@@ -255,7 +254,7 @@
             z-index: 15;
         }
 
-        /* SEZIONE DATA SU UN'UNICA RIGA COMPATTA */
+        /* Data compatta ed elegante su un'unica riga */
         .date-section {
             font-size: 0.88rem;
             font-weight: 600;
@@ -264,7 +263,7 @@
             align-items: baseline;
             justify-content: center;
             gap: 7px;
-            margin: 3px 0;
+            margin: 4px 0;
             white-space: nowrap;
         }
 
@@ -294,7 +293,7 @@
             background-color: var(--buttonbg);
             border: 1.5px solid var(--maincolor);
             border-radius: 10px;
-            padding: 9px 5px;
+            padding: 10px 6px;
             text-decoration: none;
             color: var(--maincolor);
             display: flex;
@@ -311,12 +310,14 @@
 
         .map-btn i {
             font-size: 1.25rem;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .map-btn .btn-title {
             font-size: 0.82rem;
             font-weight: 700;
+            margin-top: 1px;
+            margin-bottom: 0;
         }
 
         .map-btn .btn-subtitle {
@@ -324,12 +325,13 @@
             line-height: 1.2;
             color: #444;
             font-weight: 600;
+            margin-bottom: 2px;
         }
 
         .map-btn .btn-desc {
             font-size: 0.6rem;
             color: #777;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         /* Pulsante WhatsApp */
@@ -432,15 +434,16 @@
                 
                 <img class="main-illustration" src="decorazione.png" alt="Laureata">
                 
-                <!-- Ghirigoro Superiore -->
+                <!-- Ghirigoro Superiore Classico e Leggero -->
                 <div class="ornament-divider">
-                    <svg viewBox="0 0 300 24" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="10" y1="12" x2="110" y2="12" stroke-width="1.2" stroke-linecap="round"/>
-                        <line x1="190" y1="12" x2="290" y2="12" stroke-width="1.2" stroke-linecap="round"/>
-                        <path d="M150,2 C148,7 144,10 140,11 C145,12 148,15 150,19 C152,15 155,12 160,11 C156,10 152,7 150,2 Z"/>
-                        <path d="M141,11 C135,5 128,10 131,14 C133,16 137,13 135,11" fill="none" stroke-width="1"/>
-                        <path d="M159,11 C165,5 172,10 169,14 C167,16 163,13 165,11" fill="none" stroke-width="1"/>
-                        <circle cx="150" cy="21.5" r="1.5"/>
+                    <svg viewBox="0 0 300 20" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="10" y1="10" x2="105" y2="10" stroke-width="1" stroke-linecap="round"/>
+                        <line x1="195" y1="10" x2="290" y2="10" stroke-width="1" stroke-linecap="round"/>
+                        <path d="M150,2 C148,6 146,8 146,10 C146,12 148,14 150,18 C152,14 154,12 154,10 C154,8 152,6 150,2 Z"/>
+                        <path d="M141,10 C133,4 125,7 125,10 C125,13 133,16 141,10 Z" fill="none" stroke-width="1.2"/>
+                        <path d="M159,10 C167,4 175,7 175,10 C175,13 167,16 159,10 Z" fill="none" stroke-width="1.2"/>
+                        <circle cx="115" cy="10" r="1.5"/>
+                        <circle cx="185" cy="10" r="1.5"/>
                     </svg>
                 </div>
                 
@@ -452,15 +455,16 @@
                     <span class="date-year-inline">2026</span>
                 </div>
                 
-                <!-- Ghirigoro Inferiore (capovolto) -->
-                <div class="ornament-divider ornament-bottom">
-                    <svg viewBox="0 0 300 24" xmlns="http://www.w3.org/2000/svg">
-                        <line x1="10" y1="12" x2="110" y2="12" stroke-width="1.2" stroke-linecap="round"/>
-                        <line x1="190" y1="12" x2="290" y2="12" stroke-width="1.2" stroke-linecap="round"/>
-                        <path d="M150,2 C148,7 144,10 140,11 C145,12 148,15 150,19 C152,15 155,12 160,11 C156,10 152,7 150,2 Z"/>
-                        <path d="M141,11 C135,5 128,10 131,14 C133,16 137,13 135,11" fill="none" stroke-width="1"/>
-                        <path d="M159,11 C165,5 172,10 169,14 C167,16 163,13 165,11" fill="none" stroke-width="1"/>
-                        <circle cx="150" cy="21.5" r="1.5"/>
+                <!-- Ghirigoro Inferiore -->
+                <div class="ornament-divider">
+                    <svg viewBox="0 0 300 20" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="10" y1="10" x2="105" y2="10" stroke-width="1" stroke-linecap="round"/>
+                        <line x1="195" y1="10" x2="290" y2="10" stroke-width="1" stroke-linecap="round"/>
+                        <path d="M150,2 C148,6 146,8 146,10 C146,12 148,14 150,18 C152,14 154,12 154,10 C154,8 152,6 150,2 Z"/>
+                        <path d="M141,10 C133,4 125,7 125,10 C125,13 133,16 141,10 Z" fill="none" stroke-width="1.2"/>
+                        <path d="M159,10 C167,4 175,7 175,10 C175,13 167,16 159,10 Z" fill="none" stroke-width="1.2"/>
+                        <circle cx="115" cy="10" r="1.5"/>
+                        <circle cx="185" cy="10" r="1.5"/>
                     </svg>
                 </div>
 
@@ -469,11 +473,14 @@
                     <a class="map-btn" href="https://maps.app.goo.gl/Ua8qaku8DHuYs6AX8?g_st=aw" target="_blank">
                         <i class="fa-solid fa-location-dot"></i>
                         <span class="btn-title">PROCLAMAZIONE</span>
+                        <!-- Mini ghirigoro equispaziato con rombo e puntini -->
                         <div class="mini-ornament">
                             <svg viewBox="0 0 100 12" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="5" y1="6" x2="40" y2="6" stroke-width="1"/>
-                                <line x1="60" y1="6" x2="95" y2="6" stroke-width="1"/>
-                                <path d="M50,4 C48,2 45,4 50,8 C55,4 52,2 50,4 Z"/>
+                                <line x1="5" y1="6" x2="38" y2="6" stroke-width="1" stroke-linecap="round"/>
+                                <line x1="62" y1="6" x2="95" y2="6" stroke-width="1" stroke-linecap="round"/>
+                                <polygon points="50,3 53,6 50,9 47,6"/>
+                                <circle cx="42" cy="6" r="1"/>
+                                <circle cx="58" cy="6" r="1"/>
                             </svg>
                         </div>
                         <span class="btn-subtitle">20 Ottobre - Ore 16:00</span>
@@ -482,11 +489,14 @@
                     <a class="map-btn" href="https://maps.app.goo.gl/wLYrCB4AHYzJDBKk8?g_st=ac" target="_blank">
                         <i class="fa-solid fa-location-dot"></i>
                         <span class="btn-title">FESTA</span>
+                        <!-- Mini ghirigoro equispaziato con rombo e puntini -->
                         <div class="mini-ornament">
                             <svg viewBox="0 0 100 12" xmlns="http://www.w3.org/2000/svg">
-                                <line x1="5" y1="6" x2="40" y2="6" stroke-width="1"/>
-                                <line x1="60" y1="6" x2="95" y2="6" stroke-width="1"/>
-                                <path d="M50,4 C48,2 45,4 50,8 C55,4 52,2 50,4 Z"/>
+                                <line x1="5" y1="6" x2="38" y2="6" stroke-width="1" stroke-linecap="round"/>
+                                <line x1="62" y1="6" x2="95" y2="6" stroke-width="1" stroke-linecap="round"/>
+                                <polygon points="50,3 53,6 50,9 47,6"/>
+                                <circle cx="42" cy="6" r="1"/>
+                                <circle cx="58" cy="6" r="1"/>
                             </svg>
                         </div>
                         <span class="btn-subtitle">31 Ottobre - Ore 19:30</span>
