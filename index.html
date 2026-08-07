@@ -45,7 +45,7 @@
             width: 100%;
             max-width: 450px;
             height: 100vh;
-            height: 100dvh; /* Supporto ai browser mobile moderni */
+            height: 100dvh;
             position: relative;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             overflow: hidden;
@@ -55,7 +55,6 @@
             background-color: #f4efe6;
         }
 
-        /* Su smartphone rimuove i limiti per occupare il 100% dello schermo */
         @media (max-width: 600px) {
             .card-container {
                 max-width: 100%;
@@ -107,18 +106,47 @@
             pointer-events: none;
         }
 
-        /* Tipografia LaTeX */
+        /* Tipografia */
         .script-text {
             font-family: 'Great Vibes', cursive;
             color: var(--maincolor);
             font-weight: normal;
         }
 
-        .gold-line {
-            width: 60%;
-            height: 1px;
-            background-color: var(--goldcolor);
-            margin: 6px 0;
+        /* --- DIVISORI ORNAMENTALI (GHIRIGORI) --- */
+        .ornament-divider {
+            width: 82%;
+            max-width: 290px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1px 0;
+        }
+
+        .ornament-divider svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--goldcolor);
+            stroke: var(--goldcolor);
+        }
+
+        .ornament-bottom {
+            transform: scaleY(-1);
+        }
+
+        /* Mini divisore con cuoricino per i pulsanti mappa */
+        .mini-ornament {
+            width: 60px;
+            height: 8px;
+            margin: 3px auto;
+        }
+
+        .mini-ornament svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--goldcolor);
+            stroke: var(--goldcolor);
         }
 
         /* Gestione Pagine */
@@ -202,7 +230,7 @@
             height: 100%;
             justify-content: space-between;
             z-index: 20;
-            padding: 10px 0;
+            padding: 8px 0;
         }
 
         .intro-text {
@@ -210,7 +238,7 @@
             letter-spacing: 1.2px;
             line-height: 1.45;
             text-transform: uppercase;
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .degree-title {
@@ -220,31 +248,36 @@
         }
 
         .main-illustration {
-            height: 160px;
+            height: 150px;
             width: auto;
             object-fit: contain;
-            margin-bottom: -15px;
+            margin-bottom: -10px;
             z-index: 15;
         }
 
+        /* SEZIONE DATA SU UN'UNICA RIGA COMPATTA */
         .date-section {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            letter-spacing: 1.8px;
             display: flex;
-            align-items: center;
-            gap: 8px;
+            align-items: baseline;
+            justify-content: center;
+            gap: 7px;
+            margin: 3px 0;
+            white-space: nowrap;
         }
 
         .date-day {
-            font-size: 1.8rem;
+            font-size: 1.85rem;
             color: var(--maincolor);
             font-weight: 700;
+            line-height: 1;
         }
 
-        .date-year {
-            font-size: 0.9rem;
-            margin-top: 1px;
+        .date-year-inline {
+            color: #444;
+            font-weight: 600;
         }
 
         /* Pulsanti Mappa Interattivi */
@@ -253,7 +286,7 @@
             width: 100%;
             justify-content: space-between;
             gap: 10px;
-            margin: 6px 0;
+            margin: 4px 0;
         }
 
         .map-btn {
@@ -278,13 +311,12 @@
 
         .map-btn i {
             font-size: 1.25rem;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .map-btn .btn-title {
             font-size: 0.82rem;
             font-weight: 700;
-            margin-bottom: 2px;
         }
 
         .map-btn .btn-subtitle {
@@ -324,7 +356,7 @@
 
         .wa-btn i {
             font-size: 1.7rem;
-            color: var(--maincolor);
+            color: var(--wacolor);
         }
 
         .wa-text {
@@ -374,7 +406,7 @@
              PAGINA 1: COPERTINA CON IMMAGINE CLICCABILE
              ========================================== -->
         <div id="page1" class="page">
-            <div></div> <!-- Distanziatore -->
+            <div></div>
             
             <div class="seal-btn" onclick="openInvitation()">
                 <img src="sigillo.png" alt="Sigillo">
@@ -400,28 +432,63 @@
                 
                 <img class="main-illustration" src="decorazione.png" alt="Laureata">
                 
-                <div class="gold-line"></div>
+                <!-- Ghirigoro Superiore -->
+                <div class="ornament-divider">
+                    <svg viewBox="0 0 300 24" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="10" y1="12" x2="110" y2="12" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="190" y1="12" x2="290" y2="12" stroke-width="1.2" stroke-linecap="round"/>
+                        <path d="M150,2 C148,7 144,10 140,11 C145,12 148,15 150,19 C152,15 155,12 160,11 C156,10 152,7 150,2 Z"/>
+                        <path d="M141,11 C135,5 128,10 131,14 C133,16 137,13 135,11" fill="none" stroke-width="1"/>
+                        <path d="M159,11 C165,5 172,10 169,14 C167,16 163,13 165,11" fill="none" stroke-width="1"/>
+                        <circle cx="150" cy="21.5" r="1.5"/>
+                    </svg>
+                </div>
                 
+                <!-- Data e Anno integrati su un'unica riga -->
                 <div class="date-section">
                     <span>GIOVEDÌ</span>
                     <span class="date-day">20</span>
                     <span>OTTOBRE</span>
+                    <span class="date-year-inline">2026</span>
                 </div>
-                <div class="date-year">2026</div>
                 
-                <div class="gold-line"></div>
+                <!-- Ghirigoro Inferiore (capovolto) -->
+                <div class="ornament-divider ornament-bottom">
+                    <svg viewBox="0 0 300 24" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="10" y1="12" x2="110" y2="12" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="190" y1="12" x2="290" y2="12" stroke-width="1.2" stroke-linecap="round"/>
+                        <path d="M150,2 C148,7 144,10 140,11 C145,12 148,15 150,19 C152,15 155,12 160,11 C156,10 152,7 150,2 Z"/>
+                        <path d="M141,11 C135,5 128,10 131,14 C133,16 137,13 135,11" fill="none" stroke-width="1"/>
+                        <path d="M159,11 C165,5 172,10 169,14 C167,16 163,13 165,11" fill="none" stroke-width="1"/>
+                        <circle cx="150" cy="21.5" r="1.5"/>
+                    </svg>
+                </div>
 
                 <!-- Sezione Luoghi (Mappe) -->
                 <div class="maps-container">
                     <a class="map-btn" href="https://maps.app.goo.gl/Ua8qaku8DHuYs6AX8?g_st=aw" target="_blank">
                         <i class="fa-solid fa-location-dot"></i>
                         <span class="btn-title">PROCLAMAZIONE</span>
+                        <div class="mini-ornament">
+                            <svg viewBox="0 0 100 12" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="5" y1="6" x2="40" y2="6" stroke-width="1"/>
+                                <line x1="60" y1="6" x2="95" y2="6" stroke-width="1"/>
+                                <path d="M50,4 C48,2 45,4 50,8 C55,4 52,2 50,4 Z"/>
+                            </svg>
+                        </div>
                         <span class="btn-subtitle">20 Ottobre - Ore 16:00</span>
                         <span class="btn-desc">Dipartimento Federico II</span>
                     </a>
                     <a class="map-btn" href="https://maps.app.goo.gl/wLYrCB4AHYzJDBKk8?g_st=ac" target="_blank">
                         <i class="fa-solid fa-location-dot"></i>
                         <span class="btn-title">FESTA</span>
+                        <div class="mini-ornament">
+                            <svg viewBox="0 0 100 12" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="5" y1="6" x2="40" y2="6" stroke-width="1"/>
+                                <line x1="60" y1="6" x2="95" y2="6" stroke-width="1"/>
+                                <path d="M50,4 C48,2 45,4 50,8 C55,4 52,2 50,4 Z"/>
+                            </svg>
+                        </div>
                         <span class="btn-subtitle">31 Ottobre - Ore 19:30</span>
                         <span class="btn-desc">Villa Gervasio - Bacoli</span>
                     </a>
