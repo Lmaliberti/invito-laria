@@ -37,7 +37,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            min-height: -webkit-fill-available; /* Fix specifico per Safari iOS */
+            min-height: -webkit-fill-available;
             font-family: 'Cinzel', serif;
             color: #333;
             margin: 0;
@@ -50,7 +50,7 @@
             max-width: 450px;
             height: 100vh;
             height: 100dvh;
-            max-height: -webkit-fill-available; /* Evita il taglio inferiore su Safari */
+            max-height: -webkit-fill-available;
             position: relative;
             box-shadow: 0 15px 35px rgba(0,0,0,0.6);
             overflow: hidden;
@@ -119,7 +119,7 @@
             font-weight: normal;
         }
 
-        /* --- GHIRIGORI ELEGANTI DATA PRINCIPALE --- */
+        /* --- GHIRIGORI ELEGANTI --- */
         .ornament-divider {
             width: 82%;
             max-width: 280px;
@@ -136,6 +136,10 @@
             height: 100%;
             fill: var(--goldcolor);
             stroke: var(--goldcolor);
+        }
+        
+        .ornament-bottom {
+            transform: scaleY(-1);
         }
 
         /* Mini divisore raffinato ed equispaziato per i pulsanti mappa */
@@ -155,7 +159,7 @@
             stroke: var(--goldcolor);
         }
 
-        /* Gestione Pagine - Padding ridotto per dare respiro su schermi corti */
+        /* Gestione Pagine */
         .page {
             position: absolute;
             top: 0;
@@ -248,7 +252,6 @@
             flex-shrink: 0;
         }
 
-        /* Titolo che si adatta all'altezza reale dello schermo */
         .degree-title {
             font-size: clamp(2.5rem, 6.5vh, 3.2rem);
             line-height: 1;
@@ -256,7 +259,6 @@
             flex-shrink: 0;
         }
 
-        /* Illustrazione dinamica anti-sovrapposizione */
         .main-illustration {
             height: clamp(100px, 15vh, 145px);
             width: auto;
@@ -266,30 +268,39 @@
             flex-shrink: 1;
         }
 
-        /* Data compatta su un'unica riga */
-        .date-section {
-            font-size: 0.86rem;
+        /* --- DOPPIA DATA (SEDUTA E FESTA) --- */
+        .dates-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            margin: 3px 0;
+            flex-shrink: 0;
+        }
+
+        .date-row {
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 1.6px;
+            letter-spacing: 1.5px;
             display: flex;
             align-items: baseline;
             justify-content: center;
             gap: 6px;
-            margin: 2px 0;
             white-space: nowrap;
-            flex-shrink: 0;
+            color: #444;
         }
 
-        .date-day {
-            font-size: 1.75rem;
+        .date-label {
             color: var(--maincolor);
             font-weight: 700;
-            line-height: 1;
+            margin-right: 2px;
         }
 
-        .date-year-inline {
-            color: #444;
-            font-weight: 600;
+        .date-number {
+            font-size: 1.5rem;
+            color: var(--maincolor);
+            font-weight: 700;
+            line-height: 0.9;
         }
 
         /* Pulsanti Mappa Interattivi */
@@ -373,7 +384,7 @@
 
         .wa-btn i {
             font-size: 1.6rem;
-            color: var(--maincolor);
+            color: var(--wacolor);
         }
 
         .wa-text {
@@ -392,7 +403,7 @@
             color: #666;
         }
 
-        /* Chiusura e Firma - Proporzionata in altezza */
+        /* Chiusura e Firma */
         .footer-salute {
             display: flex;
             flex-direction: column;
@@ -463,16 +474,24 @@
                     </svg>
                 </div>
                 
-                <!-- Data e Anno integrati su un'unica riga -->
-                <div class="date-section">
-                    <span>GIOVEDÌ</span>
-                    <span class="date-day">20</span>
-                    <span>OTTOBRE</span>
-                    <span class="date-year-inline">2026</span>
+                <!-- Due righe separate per Seduta e Festa -->
+                <div class="dates-container">
+                    <div class="date-row">
+                        <span class="date-label">SEDUTA:</span>
+                        <span>GIOVEDÌ</span>
+                        <span class="date-number">20</span>
+                        <span>OTTOBRE 2026</span>
+                    </div>
+                    <div class="date-row">
+                        <span class="date-label">FESTA:</span>
+                        <span>SABATO</span>
+                        <span class="date-number">31</span>
+                        <span>OTTOBRE 2026</span>
+                    </div>
                 </div>
                 
-                <!-- Ghirigoro Inferiore -->
-                <div class="ornament-divider">
+                <!-- Ghirigoro Inferiore (Capovolto) -->
+                <div class="ornament-divider ornament-bottom">
                     <svg viewBox="0 0 300 20" xmlns="http://www.w3.org/2000/svg">
                         <line x1="10" y1="10" x2="105" y2="10" stroke-width="1" stroke-linecap="round"/>
                         <line x1="195" y1="10" x2="290" y2="10" stroke-width="1" stroke-linecap="round"/>
@@ -489,7 +508,6 @@
                     <a class="map-btn" href="https://maps.app.goo.gl/Ua8qaku8DHuYs6AX8?g_st=aw" target="_blank">
                         <i class="fa-solid fa-location-dot"></i>
                         <span class="btn-title">PROCLAMAZIONE</span>
-                        <!-- Mini ghirigoro equispaziato con rombo e puntini -->
                         <div class="mini-ornament">
                             <svg viewBox="0 0 100 12" xmlns="http://www.w3.org/2000/svg">
                                 <line x1="5" y1="6" x2="38" y2="6" stroke-width="1" stroke-linecap="round"/>
@@ -505,7 +523,6 @@
                     <a class="map-btn" href="https://maps.app.goo.gl/wLYrCB4AHYzJDBKk8?g_st=ac" target="_blank">
                         <i class="fa-solid fa-location-dot"></i>
                         <span class="btn-title">FESTA</span>
-                        <!-- Mini ghirigoro equispaziato con rombo e puntini -->
                         <div class="mini-ornament">
                             <svg viewBox="0 0 100 12" xmlns="http://www.w3.org/2000/svg">
                                 <line x1="5" y1="6" x2="38" y2="6" stroke-width="1" stroke-linecap="round"/>
